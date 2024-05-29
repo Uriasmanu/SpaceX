@@ -79,10 +79,14 @@ const Card = styled.div`
 `;
 
 const ListaEnderecos = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 `;
+
 
 const CadastrarEndereco = () => {
   const [endereco, setEndereco] = useState({});
@@ -133,7 +137,7 @@ const CadastrarEndereco = () => {
         </button>
       </Form>
 
-      <ListaEnderecos>
+      <ListaEnderecos  className='teste'>
         {listaEnderecos.map((endereco, index) => (
           <Card key={index}>
             <div>
@@ -149,6 +153,7 @@ const CadastrarEndereco = () => {
           </Card>
         ))}
       </ListaEnderecos>
+
     </>
   );
 };
