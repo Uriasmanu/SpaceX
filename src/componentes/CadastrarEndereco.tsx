@@ -69,12 +69,13 @@ const Card = styled.div`
     width: 30px;
   }
 
-  button {
+  .Editar {
     width: 50px;
     height: 50px;
     border: none;
     border-radius: 50%;
     background: #6d6c6c;
+    cursor: pointer;
   }
 `;
 
@@ -85,6 +86,7 @@ const ListaEnderecos = styled.div`
     flex-direction: column;
     width: 100%;
     align-items: center;
+    margin-top: 2%;
 `;
 
 
@@ -92,6 +94,7 @@ const CadastrarEndereco = () => {
   const [endereco, setEndereco] = useState({});
   const [formVisible, setFormVisible] = useState(false);
   const [listaEnderecos, setListaEnderecos] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -100,10 +103,24 @@ const CadastrarEndereco = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setListaEnderecos([...listaEnderecos, endereco]);
+    if (editIndex !== null) {
+      const updatedEnderecos = listaEnderecos.map((item, index) =>
+        index === editIndex ? endereco : item
+      );
+      setListaEnderecos(updatedEnderecos);
+      setEditIndex(null);
+    } else {
+      setListaEnderecos([...listaEnderecos, endereco]);
+    }
     setEndereco({});
     setFormVisible(false);
   };
+
+    const handleEdit = (index) => {
+        setEndereco(listaEnderecos[index]);
+        setFormVisible(true);
+        setEditIndex(index);
+    }
 
   return (
     <>
@@ -128,6 +145,7 @@ const CadastrarEndereco = () => {
             placeholder="Digite o lote (endereço)"
             type="text"
             name="Lote"
+            maxLength={4}
             value={endereco.Lote || ""}
             onChange={handleChange}
           />
@@ -145,8 +163,8 @@ const CadastrarEndereco = () => {
                 <img src="/icones/restaurante.svg" alt="" />
                 <h2>{endereco.Texto}</h2>
               </div>
-              <button>
-                <img src="/icones/editar.svg" alt="" />
+              <button className='Editar' onClick={() => handleEdit(index)}>
+                <img src="/icones/editar.svg" alt="icone de caneta" />
               </button>
             </div>
             <p>Lote: {endereco.Lote}</p>
