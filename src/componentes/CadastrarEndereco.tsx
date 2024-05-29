@@ -19,10 +19,32 @@ const Form = styled.form`
   background-color: #fff;
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   padding: 1rem;
-  max-width: 350px;
+  width: 30%;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   margin-top: 1rem;
+
+  h2{
+    color: #595858;
+    margin: 0;
+  }
+
+  .input-container{
+    input{
+        padding: 1%;
+        border-radius: 10px;
+        width: 90%;
+        margin-bottom: 2%;
+    }
+  }
+
+  .submit{
+        padding: 3%;
+        background: #9a9999;
+        border: none;
+        border-radius: 18px;
+        font-size: 1rem;
+    }
 `;
 
 const Card = styled.div`
@@ -86,10 +108,11 @@ const CadastrarEndereco = () => {
       </Botao>
 
       <Form isVisible={formVisible} onSubmit={handleSubmit}>
+        <h2>Cadastro</h2>
         <p className="form-title">Cadastrar Endereço</p>
         <div className="input-container">
           <input
-            placeholder="Digite o endereço"
+            placeholder="Digite o nome do estabelecimento"
             type="text"
             name="Texto"
             value={endereco.Texto || ""}
@@ -98,7 +121,7 @@ const CadastrarEndereco = () => {
         </div>
         <div className="input-container">
           <input
-            placeholder="Digite o lote"
+            placeholder="Digite o lote (endereço)"
             type="text"
             name="Lote"
             value={endereco.Lote || ""}
