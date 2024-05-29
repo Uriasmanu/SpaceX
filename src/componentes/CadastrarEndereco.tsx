@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { styled } from "styled-components";
 
+
+
 const Botao = styled.button`
   display: flex;
   align-items: center;
@@ -15,7 +17,7 @@ const Botao = styled.button`
   cursor: pointer;
 `;
 
-const Form = styled.form`
+const Form = styled.form<{ isVisible: boolean }>`
   background-color: #fff;
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   padding: 1rem;
@@ -91,10 +93,15 @@ const ListaEnderecos = styled.div`
 
 
 const CadastrarEndereco = () => {
-  const [endereco, setEndereco] = useState({});
-  const [formVisible, setFormVisible] = useState(false);
-  const [listaEnderecos, setListaEnderecos] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+    interface Endereco {
+        Texto: string;
+        Lote: string;
+      }
+
+    const [endereco, setEndereco] = useState<Endereco>({ Texto: "", Lote: "" });
+    const [formVisible, setFormVisible] = useState<boolean>(false);
+    const [listaEnderecos, setListaEnderecos] = useState<Endereco[]>([]);
+    const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -112,7 +119,7 @@ const CadastrarEndereco = () => {
     } else {
       setListaEnderecos([...listaEnderecos, endereco]);
     }
-    setEndereco({});
+    setEndereco({ Texto: "", Lote: "" });
     setFormVisible(false);
   };
 
