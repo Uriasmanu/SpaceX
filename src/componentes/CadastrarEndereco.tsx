@@ -7,7 +7,7 @@ const Botao = styled.button`
   background: #9a9999;
   border: none;
   border-radius: 18px;
-  width: 30vw;
+  width: 75vw;
   padding: 1%;
   gap: 2%;
   font-size: 1.5rem;
@@ -19,7 +19,7 @@ const Form = styled.form`
   background-color: #fff;
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   padding: 1rem;
-  width: 30%;
+  width: 75vw;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   margin-top: 1rem;
@@ -31,7 +31,7 @@ const Form = styled.form`
 
   .input-container{
     input{
-        padding: 1%;
+        padding: 3%;
         border-radius: 10px;
         width: 90%;
         margin-bottom: 2%;
@@ -50,7 +50,7 @@ const Form = styled.form`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 84%;
   background: #504f4f;
   border-radius: 5px;
   padding: 2%;
